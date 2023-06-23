@@ -19,7 +19,9 @@ app.use(cors());
 app.use("/static", express.static(`${__dirname}/public`));
 
 const MONGO_URL =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV === "production" ||
+  process.env.NODE_ENV === "development" ||
+  process.env.NODE_ENV === "qa"
     ? process.env.MONGO_URL
     : `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
