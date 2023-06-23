@@ -40,7 +40,7 @@ const connection = mongoose
   });
 
 app.use("/api/alive", (req, res) => {
-  res.json({ ok: true, message: "API ALIVE AND RUNING" });
+  res.json({ ok: true, message: "API ALIVE AND RUNING, UPDATED!!! NOW!!" });
 });
 
 app.use("/api/players", PlayersRoutes);
