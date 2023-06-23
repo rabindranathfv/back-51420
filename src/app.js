@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import PlayersRoutes from "./routes/players.routes.js"
 import __dirname from "./utils/utils.js";
 
-const PORT = 5000;
+const PORT = process.env.PORT || 8080;
 const DB_HOST = "localhost";
 const DB_PORT = 27017;
 const DB_NAME = "mongoDBPlayers";
@@ -20,7 +20,7 @@ app.use("/static", express.static(`${__dirname}/public`));
 
 const MONGO_URL = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
-const connection = mongoose.connect(MONGO_URL).then((conn) => {
+const connection = mongoose.connect(process.env.MONGO_URL ? process.env.MONGO_URL : MONGO_URL).then((conn) => {
   console.log(
     `🚀 ~ file: app.js:18 ~ CONECT WITH MONGO URL: ${MONGO_URL.slice(0,14)} ****`
   );
