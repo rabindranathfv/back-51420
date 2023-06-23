@@ -20,7 +20,8 @@ app.use("/static", express.static(`${__dirname}/public`));
 
 const MONGO_URL =
   process.env.NODE_ENV === "production" ||
-  process.env.NODE_ENV === "development"
+  process.env.NODE_ENV === "development" ||
+  process.env.NODE_ENV === "qa"
     ? process.env.MONGO_URL
     : `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
@@ -39,7 +40,7 @@ const connection = mongoose
   });
 
 app.use("/api/alive", (req, res) => {
-  res.json({ ok: true, message: "API ALIVE AND RUNING" });
+  res.json({ ok: true, message: "API ALIVE AND RUNING, UPDATED!!! NOW!!" });
 });
 
 app.use("/api/players", PlayersRoutes);
