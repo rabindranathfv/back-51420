@@ -18,13 +18,8 @@ router.get("/:id", async (req, res) => {
   res.json({ message: "get all method" });
 });
 
-router.post("/", uploader.single("img"), async (req, res) => {
+router.post("/", async (req, res) => {
   const bodyPlayer = req.body;
-  const file = req.file;
-  console.log("🚀 ~ file: players.routes.js:24 ~ router.post ~ file:", file);
-
-  bodyPlayer.image = `http://localhost:5000/public/uploads/${file.filename}`;
-
   console.log(
     "🚀 ~ file: players.routes.js:28 ~ router.post ~ bodyPlayer:",
     bodyPlayer
