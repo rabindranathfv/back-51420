@@ -18,12 +18,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/static", express.static(`${__dirname}/public`));
 
-const MONGO_URL = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+const MONGO_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.MONGO_URL
+    : `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
 const connection = mongoose
-  .connect(
-    process.env.NODE_ENV === "production" ? process.env.MONGO_URL : MONGO_URL
-  )
+  .connect(MONGO_URL)
   .then((conn) => {
     console.log(
       `🚀 ~ file: app.js:18 ~ CONECT WITH MONGO URL: ${MONGO_URL.slice(
